@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -12,3 +13,4 @@ sequenceDiagram
     deactivate server
 
     Note right of browser: JS agrega la nueva nota al DOM sin recargar la página
+```

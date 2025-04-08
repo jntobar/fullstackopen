@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -35,3 +36,4 @@ sequenceDiagram
     deactivate server
 
     Note right of browser: El navegador muestra todas las notas en pantalla
+```

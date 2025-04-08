@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -27,3 +28,4 @@ sequenceDiagram
     Note right of browser: El navegador renderiza las notas usando JavaScript
 
     Note over browser: Desde aquí, toda la interacción (como crear nota) se maneja sin recargar la página
+```
