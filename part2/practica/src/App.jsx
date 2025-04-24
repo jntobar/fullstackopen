@@ -10,7 +10,7 @@ const App = () => {
   const [newNotes, setnewNotes] = useState([])
   const [aggNotes, setAggNotes] = useState('')
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [errorMessage, setErrorMessage] = useState(null)
   console.log(setErrorMessage,'nada')
   useEffect(() => {
     console.log('effect')
