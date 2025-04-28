@@ -99,6 +99,32 @@ app.post('/api/persons', (request, response,next) => {
 })
 
 
+app.put('/api/persons/:id', (request, response, next) => {
+  const { name, number } = request.body
+
+  // Validar que el número esté presente
+  if (!number) {
+    return response.status(400).json({
+      error: 'number is required'
+    })
+  }
+
+  // Actualizar la entrada
+  Personas.findByIdAndUpdate(
+    request.params.id,
+    { name, number },
+    { new: true, runValidators: true, context: 'query' } // `new: true` devuelve el documento actualizado
+  )
+    .then(updatedPerson => {
+      if (updatedPerson) {
+        response.json(updatedPerson)
+      } else {
+        response.status(404).json({ error: 'person not found' })
+      }
+    })
+    .catch(error => next(error))
+})
+
 
 const PORT = process.env.PORT 
 app.listen(PORT, () => {
