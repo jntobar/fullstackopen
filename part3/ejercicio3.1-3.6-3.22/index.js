@@ -9,10 +9,10 @@ app.use(express.json())
 app.use(express.static('dist'))
 
 morgan.token('body', (req) => {
-  return req.method === 'POST' ? JSON.stringify(req.body) : '';
-});
+  return req.method === 'POST' ? JSON.stringify(req.body) : ''
+})
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 app.use(cors())
 
 
@@ -74,8 +74,8 @@ app.post('/api/persons', (request, response,next) => {
   }
 
 
-    // Verificar si ya existe una persona con el mismo nombre
-    Personas.findOne({ name: new RegExp('^' + body.name + '$', 'i') }) // ignorar mayúsculas/minúsculas
+  // Verificar si ya existe una persona con el mismo nombre
+  Personas.findOne({ name: new RegExp('^' + body.name + '$', 'i') }) // ignorar mayúsculas/minúsculas
     .then(existingPerson => {
       if (existingPerson) {
         return response.status(400).json({
@@ -126,9 +126,9 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`Server running at http://localhost:${PORT}/`)
 })
 
 app.use((error, request, response, next) => {

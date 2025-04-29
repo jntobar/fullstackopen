@@ -17,13 +17,13 @@ const requestLogger = (request, response, next) => {
 app.use(requestLogger)
 
 morgan.token('body', (req) => {
-  return req.method === 'POST' ? JSON.stringify(req.body) : '';
-});
+  return req.method === 'POST' ? JSON.stringify(req.body) : ''
+})
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 app.use(cors())
 
-let notes = []
+//let notes = []
 
 app.get('/', (request, response) => {
   response.send('<h1>Hola Mundo</h1>')
@@ -52,7 +52,8 @@ app.get('/api/notes/:id', (request, response, next) => {
 
 app.delete('/api/notes/:id', (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
-    .then(result => {
+    .then(() => {
+      console.log('result')
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -74,7 +75,7 @@ app.post('/api/notes', (request, response, next) => {
   note.save().then(savedNote => {
     response.json(savedNote)
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.put('/api/notes/:id', (request, response, next) => {
