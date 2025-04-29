@@ -96,7 +96,7 @@ const App = () => {
         }
         )
         .catch(error => {
-          console.log(error)
+          console.log(error.response.data.error)
           setNotification(`Error al agregar: ${error.message}`)
           setNotificationType('error')
           setTimeout(() => {

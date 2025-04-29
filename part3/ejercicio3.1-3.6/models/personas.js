@@ -12,12 +12,28 @@ mongoose.connect(url)
     })
 
 const personaSchema = new mongoose.Schema({
-    name: String,
-    number: String
-    
+    name: {
+        type: String,
+        required: true,
+        minLength: 3
+    },
+    number: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (v) {
+                // Validar que el número tenga el formato correcto
+                return /^\d{2,3}-\d+$/.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number!`
+        },
+        minLength: 9
+
+    }
+
 })
 
-personaSchema.set('toJSON',{
+personaSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
         delete returnedObject._id
